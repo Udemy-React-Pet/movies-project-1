@@ -12,10 +12,10 @@ class Main extends React.Component {
 			movies: []
 		}
 
-		this.handleSearch = this.handleSearch.bind(this);
+		this.searchMovies = this.searchMovies.bind(this);
 	}
 
-	handleSearch(searchEndpoint) {
+	searchMovies(searchEndpoint) {
 		fetch(`http://www.omdbapi.com/?apikey=7e3f1687&s=${searchEndpoint}`)
 			.then(result => result.json())
 			.then(data => this.setState({movies: data.Search}));
@@ -31,7 +31,7 @@ class Main extends React.Component {
 		const { movies } = this.state;
 
 		return <main className='container content'>
-			<Search handleSearch={this.handleSearch}/>
+			<Search searchMovies={this.searchMovies}/>
 			{
 				movies.length ? (
 					<Movies movies={movies} />
