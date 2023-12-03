@@ -11,15 +11,8 @@ nav {
 	padding: 0 1rem;
 }
 
-footer {
-
-}
-
-.content {
-	min-height: calc(100vh - 70px - 64px);
-	padding: 1.5rem 0;
-}
-
-.row {
-	display: inline-flex;
+.movies {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+	gap: 1rem;
 }

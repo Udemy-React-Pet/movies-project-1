@@ -1,25 +1,28 @@
 import React from "react";
 
 function Movie(props) {
-	const { id, img, title, type, year } = props;
+	const {
+		Title: title,
+		Year: year,
+		imdbID: id,
+		Type: type,
+		Poster: poster
+	} = props;
 
 	return (
-		<>
-			<div className="row">
-				<div className="col">
-					<div className="card">
-						<div className="card-image">
-							<img src={img}/>
-						</div>
-						<div className="card-content">
-							<div className="card-title">{title}</div>
-							<span>{type}</span>
-							<span className="right">{year}</span>
-						</div>
-					</div>
-				</div>
+		<div id={id} className="card movie">
+			<div className="card-image waves-effect waves-block waves-light">
+				{
+					poster === 'N/A' ? 
+					<img className="activator" src={`https://placehold.co/600x400?text=${title}`} alt=""/> :
+					<img className="activator" src={poster} alt=""/>
+				}
 			</div>
-		</>
+			<div className="card-content">
+				<span className="card-title activator grey-text text-darken-4">{title}</span>
+				<p>{year} <span className="right">{type}</span></p>
+			</div>
+		</div>
 	);
 }
 
