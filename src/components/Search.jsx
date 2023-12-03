@@ -15,6 +15,7 @@ class Search extends React.Component {
 						type="search"
 						value={this.state.search}
 						onChange={(e) => this.setState({ search: e.target.value })}
+						onKeyDown={(e) => {if (e.key === 'Enter') this.props.handleSearch(this.state.search)}}
 					/>
 				</div>
 			</div>

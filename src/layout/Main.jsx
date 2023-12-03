@@ -5,8 +5,20 @@ import Preloader from '../components/Preloader';
 import Search from '../components/Search';
 
 class Main extends React.Component {
-	state = {
-		movies: []
+	constructor() {
+		super();
+
+		this.state = {
+			movies: []
+		}
+
+		this.handleSearch = this.handleSearch.bind(this);
+	}
+
+	handleSearch(searchEndpoint) {
+		fetch(`http://www.omdbapi.com/?apikey=7e3f1687&s=${searchEndpoint}`)
+			.then(result => result.json())
+			.then(data => this.setState({movies: data.Search}));
 	}
 
 	componentDidMount() {
@@ -19,7 +31,7 @@ class Main extends React.Component {
 		const { movies } = this.state;
 
 		return <main className='container content'>
-			<Search />
+			<Search handleSearch={this.handleSearch}/>
 			{
 				movies.length ? (
 					<Movies movies={movies} />
