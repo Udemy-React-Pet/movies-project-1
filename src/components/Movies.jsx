@@ -2,6 +2,7 @@ import React from "react";
 
 import Movie from "./Movie";
 
+
 function Movies (props) {
 	const {movies} = props;
 
