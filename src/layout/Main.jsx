@@ -21,14 +21,14 @@ class Main extends React.Component {
 		this.handleTypeChange = this.handleTypeChange.bind(this);
 	}
 
-	searchMovies(searchEndpoint) {
+	searchMovies(search, type) {
 		this.setState((prevState) => ({
-			url: {...prevState.url, search: searchEndpoint}
+			url: {...prevState.url, search: search, type: type}
 		}));
 
 		const { base } = this.state.url;
 
-		fetch(`${base}&s=${searchEndpoint}`)
+		fetch(`${base}&s=${search}&type=${type}`)
 			.then(result => result.json())
 			.then(data => this.setState({movies: data.Search}));
 	}
@@ -40,7 +40,6 @@ class Main extends React.Component {
 			this.setState((prevState) => ({
 				url: {...prevState.url, type: ''}
 			}));
-
 
 			fetch(`${base}&s=${search}`)
 			.then(result => result.json())
@@ -57,18 +56,19 @@ class Main extends React.Component {
 	}
 
 	componentDidMount() {
-		const { base, search } = this.state.url;
+		const { base, search, type } = this.state.url;
 
-		fetch(`${base}&s=${search}`)
+		fetch(`${base}&s=${search}&type=${type}`)
 			.then(result => result.json())
 			.then(data => this.setState({movies: data.Search}));
 	}
 
 	render() {
 		const { movies } = this.state;
+		const { type } = this.state.url;
 
 		return <main className='container content'>
-			<Search searchMovies={this.searchMovies} handleTypeChange={this.handleTypeChange}/>
+			<Search searchMovies={this.searchMovies} type={type} handleTypeChange={this.handleTypeChange} />
 			{
 				movies.length ? (
 					<Movies movies={movies} />
