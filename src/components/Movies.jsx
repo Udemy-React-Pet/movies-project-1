@@ -1,18 +1,21 @@
-import React from "react";
+import React from 'react';
 
-import Movie from "./Movie";
+import Movie from './Movie';
 
+function Movies(props) {
+  const { movies = [] } = props;
 
-function Movies (props) {
-	const {movies} = props;
-
-	return (
-		<div className="movies">
-			{movies.map(movie => {
-				return <Movie key={movie.imdbID} {...movie}/>
-			})}
-		</div>
-	);
+  return (
+    <div className='movies'>
+      {movies.length ? (
+        movies.map((movie) => {
+          return <Movie key={movie.imdbID} {...movie} />;
+        })
+      ) : (
+        <h4>Nothing was found</h4>
+      )}
+    </div>
+  );
 }
 
 export default Movies;
