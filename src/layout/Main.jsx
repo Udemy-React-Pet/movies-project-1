@@ -15,8 +15,8 @@ class Main extends React.Component {
 		this.searchMovies = this.searchMovies.bind(this);
 	}
 
-	searchMovies(searchEndpoint) {
-		fetch(`http://www.omdbapi.com/?apikey=7e3f1687&s=${searchEndpoint}`)
+	searchMovies(search, type = 'all') {
+		fetch(`http://www.omdbapi.com/?apikey=7e3f1687&s=${search !== '' ? `${search}` : 'matrix'}${type !== 'all' ? `&type=${type}` : ``}`)
 			.then(result => result.json())
 			.then(data => this.setState({movies: data.Search}));
 	}
