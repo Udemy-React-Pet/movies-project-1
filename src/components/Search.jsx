@@ -31,7 +31,7 @@ class Search extends React.Component {
             onKeyDown={(e) => this.handleKey(e)}
           />
           <button
-            className='btn search-btn'
+            className='btn search-btn indigo'
             onClick={() => this.props.searchMovies(this.state.search, this.state.type)}
           >
             Search

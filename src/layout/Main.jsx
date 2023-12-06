@@ -49,6 +49,7 @@ class Main extends React.Component {
     return (
       <main className='container content'>
         <Search searchMovies={this.searchMovies} />
+				<h6>Results found: <span>{movies.length ? movies.length : 0}</span></h6>
         {loading ? <Preloader /> : <Movies movies={movies} />}
       </main>
     );
